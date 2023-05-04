@@ -58,7 +58,7 @@ class _QuizBody extends StatelessWidget {
             flex: 2,
             child: _Questions(),
           ),
-          SizedBox(width: 48),
+          SizedBox(width: 16),
           Expanded(
             flex: 1,
             child: _Score(),
@@ -137,6 +137,8 @@ class _QuestionsState extends State<_Questions> {
                   answeredCorrectly: _correctAnswer(question),
                   description: question.description,
                 ),
+
+              const SizedBox(height: 24),
             ],
           ),
         );
@@ -249,7 +251,8 @@ class _Score extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
+                  ),
+                const SizedBox(height: 24),
               ],
             ),
           );
