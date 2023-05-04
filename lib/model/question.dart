@@ -10,7 +10,6 @@ class Question extends Equatable {
     required this.answers,
     required this.rightAnswer,
     required this.description,
-    required this.category,
   });
 
   factory Question.fromJson(final Map<String, dynamic> json) =>
@@ -22,7 +21,6 @@ class Question extends Equatable {
   final List<String> answers;
   final int rightAnswer;
   final String description;
-  final String category;
 
   @override
   List<Object?> get props => [
@@ -30,6 +28,5 @@ class Question extends Equatable {
         answers,
         rightAnswer,
         description,
-        category,
       ];
 }

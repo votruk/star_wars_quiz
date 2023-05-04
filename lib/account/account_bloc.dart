@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:star_wars_quiz/disposable.dart';
 import 'package:star_wars_quiz/firestore.dart';
+import 'package:star_wars_quiz/model/question.dart';
+import 'package:star_wars_quiz/model/questions.dart';
 import 'package:star_wars_quiz/model/user.dart';
 import 'package:star_wars_quiz/shared_prefs.dart';
 
@@ -45,7 +49,18 @@ class AccountBloc implements Disposable {
 
   @override
   Future<void> dispose() async {}
+
+  Future<void> populate() async {
+    final questions = Questions.fromJson(jsonDecode(json));
+    for (Question question in questions.questions) {
+      await Firestore.addQuestion(question: question);
+    }
+  }
 }
+
+final json = '''
+
+''';
 
 enum LoginResult {
   success,

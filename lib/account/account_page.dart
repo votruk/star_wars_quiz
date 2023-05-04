@@ -153,6 +153,7 @@ class _EnterYourNameAndPassState extends State<_EnterYourNameAndPass> {
               onPressed: buttonEnabled
                   ? () async {
                       final bloc = context.read<AccountBloc>();
+                      // await bloc.populate();
                       final loginResult = await bloc.login(
                         login: _nameController.text,
                         password: _passController.text,

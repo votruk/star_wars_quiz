@@ -39,7 +39,6 @@ class Firestore {
     return (await FirebaseFirestore.instance.collection('Answers').get())
         .docs
         .map((item) {
-      print('AAAAA. item.data(): ${item.data()}');
       return AnswerWithId(
           item.id,
           Answer(
@@ -81,6 +80,17 @@ class Firestore {
       'question_id': FirebaseFirestore.instance.doc('Qustions/$questionId'),
       'user_id': FirebaseFirestore.instance.doc('Users/$userId'),
       'correct': correct,
+    });
+  }
+
+  static Future<void> addQuestion({
+    required Question question,
+  }) async {
+    await FirebaseFirestore.instance.collection('Qustions').add({
+      'question': question.question,
+      'answers': question.answers,
+      'right_answer': question.rightAnswer,
+      'description': question.description,
     });
   }
 
