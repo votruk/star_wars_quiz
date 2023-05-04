@@ -33,7 +33,10 @@ class QuizPage extends StatelessWidget {
             ],
           ),
           body: const Center(
-            child: _QuizBody(),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: _QuizBody(),
+            ),
           ),
         );
       }),
