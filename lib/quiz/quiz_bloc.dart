@@ -36,23 +36,17 @@ class QuizBloc implements Disposable {
     });
 
     _answersSubscription?.cancel();
-    _answersSubscription = Rx.merge(
-      [
-        Stream.periodic(const Duration(seconds: 10)).startWith(0),
-        _refetchSubject,
-      ],
-    ).switchMap((value) => Firestore.getAnswers().asStream()).listen((answers) {
+    _answersSubscription = _refetchSubject
+        .startWith(0)
+        .switchMap((value) => Firestore.getAnswers().asStream())
+        .listen((answers) {
       print('AAAAA. answers: $answers');
       _answersSubject.add(answers);
     });
 
     _usersSubscription?.cancel();
-    _usersSubscription = Rx.merge(
-      [
-        Stream.periodic(const Duration(seconds: 10)).startWith(0),
-        _refetchSubject,
-      ],
-    )
+    _usersSubscription = _refetchSubject
+        .startWith(0)
         .switchMap((value) => Firestore.getUsersWithId().asStream())
         .listen((users) {
       print('AAAAA. users: $users');
