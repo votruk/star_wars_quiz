@@ -40,6 +40,7 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
@@ -54,6 +55,20 @@
         }
       });
     });
+  </script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyDhUH-EAzSpLbuHfGN_GPkG1L-CparKCK8",
+      authDomain: "flutter-star-wars-quiz.firebaseapp.com",
+      databaseURL: "flutter-star-wars-quiz.firebaseio.com",
+      projectId: "flutter-star-wars-quiz",
+      storageBucket: "flutter-star-wars-quiz.appspot.com",
+      messagingSenderId: "1010433636082",
+      appId: "1:1010433636082:web:c169fc74ec41115cf9826b"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
   </script>
 </body>
 </html>
