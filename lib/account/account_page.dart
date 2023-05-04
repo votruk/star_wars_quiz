@@ -15,7 +15,7 @@ class AccountPage extends StatelessWidget {
       child: Scaffold(
         body: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints.tightFor(width: 600),
+            constraints: const BoxConstraints.tightFor(width: 3600),
             child: const _AccountBody(),
           ),
         ),
