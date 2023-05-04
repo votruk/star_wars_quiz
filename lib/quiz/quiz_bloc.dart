@@ -102,7 +102,7 @@ class QuizBloc implements Disposable {
             },
           )
           .whereNotNull()
-      .sorted((a, b) => b.rightAnswers.compareTo(a.rightAnswers))
+          .sorted((a, b) => b.rightAnswers.compareTo(a.rightAnswers))
           .toList();
 
   Future<void> logout() async {
@@ -126,11 +126,13 @@ class QuizBloc implements Disposable {
     if (user == null) {
       return;
     }
-    await Firestore.answerQuestion(
-      questionId: questionId,
-      userId: user.id,
-      correct: correct,
-    );
+    if (correct) {
+      await Firestore.answerQuestion(
+        questionId: questionId,
+        userId: user.id,
+        correct: correct,
+      );
+    }
     _refetchSubject.add(0);
   }
 
@@ -138,8 +140,17 @@ class QuizBloc implements Disposable {
     required bool correct,
   }) async {
     final questions = await Firestore.getQuestions();
+    final answers = _answersSubject.value;
+    final notAnsweredQuestions = questions
+        .where(
+          (questionWithId) => !answers.any(
+            (answerWithId) =>
+                answerWithId.answer.questionId == questionWithId.id,
+          ),
+        )
+        .toList();
     _currentQuestionSubject.add(
-      questions[Random().nextInt(questions.length)].id,
+      notAnsweredQuestions[Random().nextInt(notAnsweredQuestions.length)].id,
     );
   }
 

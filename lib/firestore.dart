@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:star_wars_quiz/model/answer.dart';
 import 'package:star_wars_quiz/model/answer_with_id.dart';
 import 'package:star_wars_quiz/model/question.dart';
@@ -62,20 +61,6 @@ class Firestore {
     required String userId,
     required bool correct,
   }) async {
-    final currentAnswers = await getAnswers();
-    final existentAnswer = currentAnswers.firstWhereOrNull(
-      (answer) =>
-          answer.answer.questionId == questionId &&
-          answer.answer.userId == userId,
-    );
-    print('AAAAA. existentAnswer: $existentAnswer');
-    if (existentAnswer != null) {
-      await FirebaseFirestore.instance
-          .collection('Answers')
-          .doc(existentAnswer.id)
-          .update({'correct': correct});
-      return;
-    }
     await FirebaseFirestore.instance.collection('Answers').add({
       'question_id': FirebaseFirestore.instance.doc('Qustions/$questionId'),
       'user_id': FirebaseFirestore.instance.doc('Users/$userId'),

@@ -58,9 +58,7 @@ class AccountBloc implements Disposable {
   }
 }
 
-final json = '''
-
-''';
+final json = '''''';
 
 enum LoginResult {
   success,
