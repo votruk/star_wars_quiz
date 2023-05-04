@@ -47,7 +47,7 @@ class _QuizBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints.tightFor(width: 800),
+      constraints: const BoxConstraints.tightFor(width: 660),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: const [
